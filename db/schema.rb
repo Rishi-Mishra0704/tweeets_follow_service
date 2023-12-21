@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 0) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_21_183605) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -119,6 +119,16 @@ ActiveRecord::Schema[7.0].define(version: 0) do
     t.timestamptz "expire_date", null: false
     t.index ["expire_date"], name: "django_session_expire_date_a5c62663"
     t.index ["session_key"], name: "django_session_session_key_c0390e0f_like", opclass: :varchar_pattern_ops
+  end
+
+  create_table "follows", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   add_foreign_key "api_comment", "api_tweet", column: "tweet_id", name: "api_comment_tweet_id_32f9fdce_fk_api_tweet_id", deferrable: :deferred
