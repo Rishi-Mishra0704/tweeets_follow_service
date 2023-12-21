@@ -128,11 +128,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_21_183605) do
     t.index ["follower_id"], name: "follows_follower_id_63fa6a23"
   end
 
-  create_table "users", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   add_foreign_key "api_comment", "api_tweet", column: "tweet_id", name: "api_comment_tweet_id_32f9fdce_fk_api_tweet_id", deferrable: :deferred
   add_foreign_key "api_comment", "auth_user", column: "user_id", name: "api_comment_user_id_14315666_fk_auth_user_id", deferrable: :deferred
   add_foreign_key "api_like", "api_tweet", column: "tweet_id", name: "api_like_tweet_id_9e13ddcb_fk_api_tweet_id", deferrable: :deferred
