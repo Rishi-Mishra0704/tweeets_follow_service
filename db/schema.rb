@@ -121,9 +121,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_21_183605) do
     t.index ["session_key"], name: "django_session_session_key_c0390e0f_like", opclass: :varchar_pattern_ops
   end
 
-  create_table "follows", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table "follows", id: :bigint, default: nil, force: :cascade do |t|
+    t.integer "followee_id", null: false
+    t.integer "follower_id", null: false
+    t.index ["followee_id"], name: "follows_followee_id_6accedd4"
+    t.index ["follower_id"], name: "follows_follower_id_63fa6a23"
   end
 
   create_table "users", force: :cascade do |t|
@@ -145,4 +147,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_21_183605) do
   add_foreign_key "auth_user_user_permissions", "auth_user", column: "user_id", name: "auth_user_user_permissions_user_id_a95ead1b_fk_auth_user_id", deferrable: :deferred
   add_foreign_key "django_admin_log", "auth_user", column: "user_id", name: "django_admin_log_user_id_c564eba6_fk_auth_user_id", deferrable: :deferred
   add_foreign_key "django_admin_log", "django_content_type", column: "content_type_id", name: "django_admin_log_content_type_id_c4bce8eb_fk_django_co", deferrable: :deferred
+  add_foreign_key "follows", "auth_user", column: "followee_id", name: "follows_followee_id_6accedd4_fk_auth_user_id", deferrable: :deferred
+  add_foreign_key "follows", "auth_user", column: "follower_id", name: "follows_follower_id_63fa6a23_fk_auth_user_id", deferrable: :deferred
 end
