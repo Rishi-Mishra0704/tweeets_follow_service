@@ -1,4 +1,6 @@
-class FollowsController < ApplicationController
+class Api::V1::FollowsController < ApplicationController
+
+  before_action :authenticate_user!
 
   def create
     followee = User.find(params[:user_id])
