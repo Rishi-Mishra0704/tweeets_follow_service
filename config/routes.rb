@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
-      resources :follows, only: [ :create, :destroy]
+      resources :users do
+      resource :follow, only: [:create, :destroy], controller: 'follows'
+      end
     end
   end
 
